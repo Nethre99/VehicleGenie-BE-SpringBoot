@@ -2,6 +2,7 @@ package com.ncgroup.vehiclegenie.dto.models;
 
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 @Getter
@@ -10,7 +11,7 @@ import java.math.BigInteger;
 @AllArgsConstructor
 @ToString
 public class Vehicle {
-    private BigInteger Vehicle_Id;
+    private BigDecimal Vehicle_Id;
     private String Title;
     private String Sub_title;
     private int Price;
