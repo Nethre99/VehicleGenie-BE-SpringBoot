@@ -33,8 +33,10 @@ public class VehicleMgtServiceImpl implements VehicleMgtService {
 
     @Override
     public Flux<Vehicle> getRecommendedVehicles(int UserId){
+        log.info("Get Recommendations | user id: {}", UserId);
+        Flux<Vehicle> vehicles = vehicleGenieClient.getRecommendations(UserId);
         log.info("VehicleGenie Recommendation Service | Get Recommendations for User: {}", UserId);
-        return vehicleGenieClient.getRecommendations(UserId);
+        return vehicles;
     }
 
     @Override

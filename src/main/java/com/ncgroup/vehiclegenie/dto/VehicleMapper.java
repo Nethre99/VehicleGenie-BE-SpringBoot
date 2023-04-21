@@ -20,11 +20,11 @@ public class VehicleMapper implements RowMapper<Vehicle> {
         vehicle.setVehicle_Id(BigDecimal.valueOf(rs.getInt("Vehicle_Id")));
         vehicle.setTitle(rs.getString("Title"));
         vehicle.setSub_title(rs.getString("Sub_title"));
-        vehicle.setPrice(rs.getInt("Price"));
+        vehicle.setPrice(rs.getString("Price"));
         vehicle.setBrand(rs.getString("Brand"));
         vehicle.setModel(rs.getString("Model"));
         vehicle.setEdition(rs.getString("Edition"));
-        vehicle.setYear(rs.getInt("Year"));
+        vehicle.setYear(rs.getString("Year"));
         vehicle.setCondition(rs.getString("Condition"));
         vehicle.setTransmission(rs.getString("Transmission"));
         vehicle.setBody(rs.getString("Body"));
@@ -33,10 +33,10 @@ public class VehicleMapper implements RowMapper<Vehicle> {
         vehicle.setMileage(rs.getString("Mileage"));
         vehicle.setLocation(rs.getString("Location"));
         vehicle.setDescription(rs.getString("Description"));
-        vehicle.setPost_Url(rs.getString("Post_URL"));
-        vehicle.setSeller_Name(rs.getString("Seller_name"));
-        vehicle.setSeller_Type(rs.getString("Seller_type"));
-        vehicle.setPublished_Date(rs.getString("published_date"));
+        vehicle.setPost_url(rs.getString("Post_URL"));
+        vehicle.setSeller_name(rs.getString("Seller_name"));
+        vehicle.setSeller_type(rs.getString("Seller_type"));
+        vehicle.setPublished_date(rs.getString("published_date"));
         return vehicle;
     }
 }

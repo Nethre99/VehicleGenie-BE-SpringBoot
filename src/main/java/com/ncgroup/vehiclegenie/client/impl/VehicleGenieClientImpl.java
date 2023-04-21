@@ -28,7 +28,7 @@ public class VehicleGenieClientImpl implements VehicleGenieClient{
     @Override
     public Flux<Vehicle> getRecommendations(int UserId) {
         return webClient.get()
-                .uri("/getRecommendations/{UserId}", UserId)
+                .uri("/getRecommendations/{UserID}/", UserId)
                 .retrieve()
                 .onStatus(HttpStatus::isError, response -> {
                     log.info("Get Recommendation Client Status: {}", response);
