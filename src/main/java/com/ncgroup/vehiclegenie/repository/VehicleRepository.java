@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface VehicleRepository {
     List<Vehicle> getAllVehicles();
+
+    Vehicle getVehicleById(int vehicleId);
 }

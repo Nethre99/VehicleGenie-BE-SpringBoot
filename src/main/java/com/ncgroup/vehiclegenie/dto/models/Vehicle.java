@@ -1,6 +1,7 @@
 package com.ncgroup.vehiclegenie.dto.models;
 
 import lombok.*;
+import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -10,6 +11,7 @@ import java.math.BigInteger;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
 public class Vehicle {
 
     private String title;

@@ -10,7 +10,8 @@ import java.math.BigInteger;
 @AllArgsConstructor
 @ToString
 public class UserHistory {
-    private BigInteger Client_Id;
-    private BigInteger Vehicle_Id;
+    private int uv_id;
+    private int Client_Id;
+    private int Vehicle_Id;
 
 }

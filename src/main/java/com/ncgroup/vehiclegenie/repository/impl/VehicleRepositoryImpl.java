@@ -32,4 +32,23 @@ public class VehicleRepositoryImpl implements VehicleRepository {
             return null;
         }
     }
+
+    @Override
+    public Vehicle getVehicleById(int vehicleId) {
+        log.info("Vehicle Repo | Get Vehicle by Id [{}]", vehicleId);
+
+        try {
+            Vehicle vehicle = jdbcTemplate.queryForObject("Select * from vehicles where vehicle_Id=?", new VehicleMapper(), vehicleId);
+
+            return vehicle;
+        }catch (EmptyResultDataAccessException e){
+
+            log.error("Vehicle Repo | Result Data Access Exception: {}", e);
+            return null;
+
+        }catch (Exception e){
+            log.error("Vehicle Repo | Get Vehicle by Id [{}] throws: {}", vehicleId, e);
+            return null;
+        }
+    }
 }
