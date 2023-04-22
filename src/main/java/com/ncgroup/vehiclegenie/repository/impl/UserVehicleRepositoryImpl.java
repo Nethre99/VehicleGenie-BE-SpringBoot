@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.Objects;
 
 @Slf4j
 @Repository
@@ -19,7 +20,7 @@ public class UserVehicleRepositoryImpl implements UserVehicleRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    private String INSERT_QUERY = "insert into user_vehicle(uv_Id, Client_Id, Vehicle_Id) value (?,?,?)";
+    private final String INSERT_QUERY = "insert into user_vehicle(uv_Id, Client_Id, Vehicle_Id) value (?,?,?)";
 
     public UserVehicleRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -38,7 +39,7 @@ public class UserVehicleRepositoryImpl implements UserVehicleRepository {
                 return preparedStatement;
             }, keyHolder);
             log.info("Watched Add Created:{}", update);
-            userHistory.setUv_id(keyHolder.getKey().intValue());
+            userHistory.setUv_id(Objects.requireNonNull(keyHolder.getKey()).intValue());
             log.info("Watched add {}", userHistory);
             return true;
         } catch (InvalidResultSetAccessException e) {

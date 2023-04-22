@@ -3,7 +3,6 @@ package com.ncgroup.vehiclegenie.services;
 import com.ncgroup.vehiclegenie.dto.AddVehicle;
 import com.ncgroup.vehiclegenie.dto.models.Vehicle;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 public interface VehicleMgtService {
 
@@ -17,7 +16,6 @@ public interface VehicleMgtService {
     /**
      * Get Recommended Vehicles
      *
-     * @param - UserId
      * @return - List of vehicle recommendations
      */
     Flux<Vehicle> getRecommendedVehicles(int UserId);
@@ -25,9 +23,8 @@ public interface VehicleMgtService {
     /**
      * Add Vehicle
      *
-     * @param addvehicle
-     * @return
+     * @return vehicle list
      */
-    Mono<Vehicle> addVehicle(AddVehicle addvehicle);
+    Flux<Vehicle> addVehicle(AddVehicle addvehicle);
 
 }

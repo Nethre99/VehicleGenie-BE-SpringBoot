@@ -1,16 +1,13 @@
 package com.ncgroup.vehiclegenie.resources;
 
-import com.ncgroup.vehiclegenie.dto.models.User;
+import com.ncgroup.vehiclegenie.dto.AddVehicle;
 import com.ncgroup.vehiclegenie.dto.models.Vehicle;
 import com.ncgroup.vehiclegenie.services.VehicleMgtService;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
 @Slf4j
@@ -35,6 +32,17 @@ public class VehicleResource {
     public Flux<Vehicle> getRecommendationList(@PathVariable("UserId") int UserId){
         log.info("Get Recommendations for UserId {}", UserId);
         Flux<Vehicle> vehicleFlux = vehicleMgtService.getRecommendedVehicles(UserId);
+        log.info("Vehicle Resource | getRecommendationList..!!");
+        return vehicleFlux;
+    }
+
+
+    @PostMapping("/addvehicle")
+    @ResponseBody
+    public Flux<Vehicle> addVehicle(@RequestBody AddVehicle vehicle){
+        log.info("Vehicle Resource | add vehicle: {}", vehicle.getTitle());
+        Flux<Vehicle> vehicleFlux = vehicleMgtService.addVehicle(vehicle);
+        log.info("Vehicle Resource | vehicle added successful..!!");
         return vehicleFlux;
     }
 }

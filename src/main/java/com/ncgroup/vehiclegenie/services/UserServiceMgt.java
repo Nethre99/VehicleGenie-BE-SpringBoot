@@ -7,14 +7,14 @@ import reactor.core.publisher.Mono;
 public interface UserServiceMgt {
 
     /**
-     *
+     * createUserAccounts
      * @param client
      * @return
      */
     User createUserAccount(ClientInfo client);
 
     /**
-     *
+     * getUserByEmail
      * @param client
      * @return
      */
