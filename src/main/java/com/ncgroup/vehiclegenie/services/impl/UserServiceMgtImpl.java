@@ -31,18 +31,21 @@ public class UserServiceMgtImpl implements UserServiceMgt {
         log.info("UUID | Lowbit [{}], highBit [{}] ", lowbit, highbits);
 
         User user = new User((int) lowbits, client.getEmail(), client.getName());
-
-        User createdUser = userRepository.createUser(user);
+        User createdUser;
+//        Check user existence
+        User existence = userRepository.getUserDetailsByUserEmail(client.getEmail());
+        if ( existence == null){
+            createdUser = userRepository.createUser(user);
+        }else {
+            createdUser = existence;
+        }
 
         return createdUser;
     }
 
     @Override
     public Mono<User> getUserByEmail(ClientInfo client) {
-
         User user = userRepository.getUserDetailsByUserEmail(client.getEmail());
-
-
-        return null;
+        return Mono.just(user);
     }
 }
