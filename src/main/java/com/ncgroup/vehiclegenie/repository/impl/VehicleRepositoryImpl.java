@@ -39,7 +39,7 @@ public class VehicleRepositoryImpl implements VehicleRepository {
 
         try {
             Vehicle vehicle = jdbcTemplate.queryForObject("Select * from vehicles where vehicle_Id=?", new VehicleMapper(), vehicleId);
-
+            log.info("Vehicle Repo | vehicle by Id query : [{}]", vehicle);
             return vehicle;
         }catch (EmptyResultDataAccessException e){
 
