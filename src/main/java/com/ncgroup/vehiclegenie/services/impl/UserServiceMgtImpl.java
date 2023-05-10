@@ -25,16 +25,18 @@ public class UserServiceMgtImpl implements UserServiceMgt {
         UUID myuuid = UUID.randomUUID();
         long highbits = myuuid.getMostSignificantBits();
         long lowbits = myuuid.getLeastSignificantBits();
+        long low = Math.abs(myuuid.getLeastSignificantBits());
+
 
         int lowbit = (int) (lowbits & Long.MAX_VALUE);
 
-        log.info("UUID | Lowbit [{}], highBit [{}] ", lowbit, highbits);
+        log.info("UUID | Lowbit [{}], highBit [{}], Math.abs [{}] ", lowbit, highbits);
 
         User user = new User((int) lowbits, client.getEmail(), client.getName());
         User createdUser;
 //        Check user existence
         User existence = userRepository.getUserDetailsByUserEmail(client.getEmail());
-        if ( existence == null){
+        if ( existence.getClient_Id() == 1234){
             createdUser = userRepository.createUser(user);
         }else {
             createdUser = existence;
@@ -45,7 +47,14 @@ public class UserServiceMgtImpl implements UserServiceMgt {
 
     @Override
     public Mono<User> getUserByEmail(ClientInfo client) {
+        log.info("User mgt service | get user by mail: {}", client.toString());
         User user = userRepository.getUserDetailsByUserEmail(client.getEmail());
-        return Mono.just(user);
+        log.info("User mgt service | get user by mail results: {}", user.toString());
+
+        if (user.getClient_Id() == 1234){
+            return Mono.just(new User(1234, "No user found", "No user found"));
+        }else {
+            return Mono.just(user);
+        }
     }
 }

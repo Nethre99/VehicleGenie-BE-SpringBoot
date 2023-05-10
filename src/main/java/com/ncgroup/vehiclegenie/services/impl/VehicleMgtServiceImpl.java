@@ -8,6 +8,7 @@ import com.ncgroup.vehiclegenie.services.VehicleMgtService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -81,5 +82,10 @@ public class VehicleMgtServiceImpl implements VehicleMgtService {
         log.info("Vehicle Service MGT | Add vehicle return list length: {}", vehicleList.size());
 
         return Flux.fromIterable(vehicleList);
+    }
+
+    @Override
+    public Mono<Vehicle> getVehicleById(int vehicleId) {
+        return null;
     }
 }

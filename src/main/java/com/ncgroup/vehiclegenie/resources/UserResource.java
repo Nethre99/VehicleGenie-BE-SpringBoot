@@ -7,16 +7,14 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @Slf4j
 @Controller
 @RequestMapping("usermgt")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserResource {
 
     @Autowired
@@ -37,6 +35,7 @@ public class UserResource {
     @PostMapping("/login")
     @ResponseBody
     public Mono<User> userLogin(@RequestBody ClientInfo client){
+        log.info("User Resource | User Login [{}]", client.toString());
         return userServiceMgt.getUserByEmail(client);
     }
 }

@@ -10,4 +10,5 @@ public interface VehicleRepository {
     List<Vehicle> getAllVehicles();
 
     Vehicle getVehicleById(int vehicleId);
+
 }

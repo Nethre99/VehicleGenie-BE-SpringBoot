@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Objects;
 
 @Slf4j
@@ -60,19 +61,23 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User getUserDetailsByUserEmail(String email) {
         log.info("User Repo | Get User by Email [{}]", email);
-
+        User template = new User(1234,"template", "template");
         try {
-            User user = jdbcTemplate.queryForObject("Select * from client where email=?", new UserMapper(), email);
+            List<User> user = jdbcTemplate.query("Select * from client where email=?", new UserMapper(), email);
             log.info("User Repo | User query : [{}]", user);
-            return user;
+            return user.get(0);
         }catch (EmptyResultDataAccessException e){
 
             log.error("User Repo | Result Data Access Exception: {}", e);
-            return null;
+            return template;
 
-        }catch (Exception e){
+        } catch (IndexOutOfBoundsException ie){
+            log.info("User Repo | Get User by email: Throws index out of bounds exception", ie);
+            return template;
+
+        } catch (Exception e){
             log.error("User Repo | Get User by email [{}] throws: {}", email, e);
-            return null;
+            return template;
         }
     }
 }

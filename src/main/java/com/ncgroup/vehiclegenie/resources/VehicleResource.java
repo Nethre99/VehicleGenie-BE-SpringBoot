@@ -4,7 +4,6 @@ import com.ncgroup.vehiclegenie.dto.AddVehicle;
 import com.ncgroup.vehiclegenie.dto.models.Vehicle;
 import com.ncgroup.vehiclegenie.services.VehicleMgtService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +13,7 @@ import reactor.core.publisher.Flux;
 @RequestMapping("vehicle")
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class VehicleResource {
 
     @Autowired
